@@ -1,0 +1,55 @@
+Numeric Streams
+represent primitive values in stream
+IntStream, LongStream, DoubleStream
+
+while using normal Integer for operations it perform unboxing operation to convert to int
+thats where we use IntStream
+
+IntStream.range(1,50) - 1 to 49
+.rangeClosed(1,50) - 1 to 50 both returns IntStream
+count() 
+
+Aggregate functions
+sum - return int
+max - optionalInt
+min - optionalInt
+avg - optionalDouble
+
+boxed()  primtive to wrapper
+unboxing() wrapper to primitve using
+mapToInt()
+//boxing
+       List<Integer> l5 = IntStream.rangeClosed(1,50).boxed().collect(Collectors.toList());
+       l5.forEach(System.out::print);
+       //unboxing
+        int[] arr = l5.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(arr));
+
+mapToObj()
+mapToDouble()
+mapToLong()
+
+
+Terminal Operation on collect():
+joining() String concat
+joining(delimiter)
+joining(delimiter, prefix, suffix)
+
+counting() by collector
+
+mapping(Function, Collector) apply transformation function and collects
+
+maxBy(Comparator) returns Optional
+minBy(Comparator) returns Optional
+
+summingInt(ToIntFunction), averagingInt(ToIntFunction)
+
+groupingBy(classifier) returns Map<K(input),V(output)> 
+groupingBy(classifier, downstream) returns Map<K,V> 
+example Collectors.counting()
+groupingBy(classifier, supplier, downstream) returns Map<K,V>  lets you specify map type
+
+.collect(groupingBy(grade), collectingAndThen(maxBy()), Optional::get()));
+
+partitioningBy(predicate) returns Map<Boolean, V) 
+partitioningBy(predicate, downstream) returns Map<Boolean, V) 
