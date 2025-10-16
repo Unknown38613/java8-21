@@ -1,0 +1,99 @@
+Streams API: 
+sequence of elements can be created from collections or I/Os
+perform operations on Collections
+operations can be sequential (stream()) or parallel (parallelStream())
+parallel operations are easy to perform with streams api without having to spawn multiple threads
+can be used with I/Os
+
+Stream cannot be looped twice or it can be traversed only once
+
+For debugging in stream: .peek(consumer)
+
+map() convert one type to another
+flatMap() same like map but used where each element represents multiple elements
+
+distinct() returns stream of unique
+count() returns a long 
+sorted() sort the elements
+
+filter() takes predicate
+
+reduce() terminal operation to reduce content to single value
+first parameter - initial value, identity like 1 
+second - BinaryOperator
+(a,b) -> a*b so 1*1= 1 then 1*2 = 2 ....
+
+or if we dont use first parameter
+then Optional to handle null values
+always use isPresent() method to check if null values is present
+
+limit(n) to n element to be processed such that operation will be performed on those n element
+skip(n) skip first n element and process remaining ones
+limit (5) first 5
+skip (5) after 5
+
+anyMatch(), allMatch(), noneMatch() takes predicate as input and returns Boolean
+
+findFirst() and findAny() find element in stream and returns it in Optional type, findFirst first element of stream and findAny first encountered element in stream
+
+short circuiting - limit(), findFirst(), findAny(), anyMatch(), allMatch(), noneMatch() these function does not iterate whole stream 
+
+stateful functions - distinct(), sorted(), skip(), limit()  because they need to know state of previously processed element in order to function
+rest all stateless functions
+
+Factory Methods:
+Of(), generate(), iterate()
+Stream.of(...) used to pass certain values to stream, creating stream
+Stream.iterate(initial value, predicate)
+Steam.generate(Supplier)
+
+---------------------------------------------------
+
+Main Categories of Stream Methods
+1. Creation
+
+Stream.of(...)
+Arrays.stream(...)
+Collection.stream()
+
+2. Intermediate Operations (return a new stream)
+These are lazy — they don’t do anything until a terminal operation is called.
+
+filter()
+map(), mapToInt(), mapToDouble(), etc.
+flatMap()
+distinct()
+sorted()
+limit(), skip()
+peek()
+
+3. Terminal Operations (trigger processing)
+These consume the stream.
+
+forEach()
+collect()
+toList(), toSet(), toMap()
+reduce()
+count()
+min(), max()
+anyMatch(), allMatch(), noneMatch()
+findFirst(), findAny()
+
+4. Collectors (used with collect())
+
+Collectors.toList(), toSet(), toMap()
+Collectors.groupingBy()
+Collectors.partitioningBy()
+Collectors.counting()
+Collectors.averagingInt(), averagingDouble()
+Collectors.summingInt(), summarizingInt()
+Collectors.joining()
+Collectors.mapping(), reducing()
+
+
+🔧 Pro Tip:
+You don’t need to memorize them all. Just remember:
+
+Intermediate = transforms the stream.
+Terminal = ends the stream and gives a result.
+Collectors = used to gather results in a structured way.
