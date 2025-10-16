@@ -1,0 +1,44 @@
+Java 8 to 21 Features:
+
+Imperative programming - How
+Declarative programming - What
+
+Lambdas are anonymous functions and are not tied to any class like regular methods, can be also assigned to variable and passed around
+
+forEach takes consumer/biconsumer
+useful for maps and lists
+
+consumer.andThen(consumer) consumer chaining
+.accept()
+
+Predicate for code reusability
+.test() returns true or false
+.and(), .or(), .negate()
+
+Function Interface
+Function<Input Type, Output Type> f = (name) -> ...
+
+a.andThen(b) first applies a then b on the result of a
+a.compose(b) first applies b then a on the result of b
+
+BiFunction takes two input and produces one output
+
+Unary Operator Interface If input and output are of same type it can be used over function interface
+
+BinaryOperator also same but it can take two input of same type and produce output of same type
+minBy and maxBy accepts comparator
+
+Supplier - doesn't take any input but returns output exactly opposite of consumer
+
+Method Reference - shortcut for lambdas
+refer a method in a class
+
+Classname::staticMethodname
+Classname::instanceMethodname
+Classname::new
+
+local variable - declared inside method
+not allowed in lambda parameters
+not allowed to get re-assigned (Effectively final), not even in the method after lambda is written
+
+no such restriction for instance variable
