@@ -1,0 +1,14 @@
+Parallel Stream
+uses Fork/Join framework 
+- no. of threads created = no. of processors
+
+stateful operations not work with parallel :
+distinct(), sorted(), limit(), skip(), groupingBy(), partitioningBy() 
+
+rest all can but
+
+🧠 Notes:
+
+Stateful ≠ unsafe, but stateful operations may reduce parallel performance.
+Some operations like collect() or reduce() can be safe or unsafe depending on how they're used (e.g., using synchronized collections or non-associative functions can make them unsafe).
+forEach() is technically stateless, but if you perform side effects (e.g., modifying shared variables), it becomes unsafe in parallel.
